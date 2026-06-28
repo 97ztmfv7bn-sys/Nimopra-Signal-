@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#071018" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="NIMOPRA GATE" />
+  <meta name="description" content="NIMOPRA GATE – Ideen klar prüfen, begründen und gemeinsam aufbauen." />
+  <title>NIMOPRA GATE</title>
+  <style>
+    :root {
+      --bg:#071018;
+      --bg2:#0b1720;
+      --panel:#10212c;
+      --panel2:#132a36;
+      --panel3:#0d1a24;
+      --line:rgba(210,245,236,.13);
+      --line2:rgba(176,246,220,.24);
+      --ink:#f3f8f6;
+      --muted:#9aadb4;
+      --muted2:#6f8791;
+      --mint:#83efbe;
+      --mint2:#b8ffe0;
+      --cyan:#72d9ff;
+      --violet:#b9a7ff;
+      --amber:#ffc980;
+      --red:#ff9ca1;
+      --shadow:0 28px 70px rgba(0,0,0,.42);
+      --safe-top:env(safe-area-inset-top,0px);
+      --safe-bottom:env(safe-area-inset-bottom,0px);
+      --radius-xl:30px;
+      --radius-lg:22px;
+      --radius-md:16px;
+    }
+    *{box-sizing:border-box}
+    html{background:var(--bg)}
+    body{margin:0; min-width:320px; color:var(--ink); background:
+      radial-gradient(760px 520px at -12% -12%, rgba(62,140,192,.30), transparent 62%),
+      radial-gradient(680px 520px at 112% 15%, rgba(51,196,145,.13), transparent 61%),
+      linear-gradient(180deg,#071018 0%,#08141d 48%,#061018 100%);
+      font-family:Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden;
+    }
+    body:before{content:""; position:fixed; inset:0; pointer-events:none; z-index:-1; opacity:.15; background-image:radial-gradient(rgba(255,255,255,.35) .45px, transparent .7px); background-size:5px 5px; mask-image:linear-gradient(#000,transparent 66%)}
+    button,input,textarea,select{font:inherit} button{cursor:pointer; -webkit-tap-highlight-color:transparent}
+    button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid rgba(131,239,190,.4); outline-offset:3px}
+    .app{min-height:100vh; padding-bottom:calc(94px + var(--safe-bottom))}
+    .topbar{height:calc(84px + var(--safe-top)); padding:calc(11px + var(--safe-top)) 18px 11px; display:flex; align-items:center; justify-content:space-between; gap:12px; position:sticky; top:0; z-index:30; background:linear-gradient(180deg,rgba(7,16,24,.98),rgba(7,16,24,.83) 70%,rgba(7,16,24,0)); backdrop-filter:blur(18px)}
+    .brand{display:flex; align-items:center; gap:10px; min-width:0}
+    .brand-mark{width:43px;height:43px;border-radius:16px;display:grid;place-items:center;position:relative;background:conic-gradient(from 220deg,var(--mint),var(--cyan) 28%,var(--violet) 53%,var(--mint) 84%,var(--mint));box-shadow:0 12px 30px rgba(80,220,166,.2)}
+    .brand-mark:before{content:"";position:absolute;inset:2px;border-radius:14px;background:#0c1b25}
+    .brand-mark:after{content:"";position:absolute;width:20px;height:20px;border-radius:50%;border:1px solid rgba(180,255,225,.52);box-shadow:0 0 0 5px rgba(131,239,190,.06)}
+    .brand-mark b{position:relative;z-index:1;font-size:18px;letter-spacing:-.08em;color:#f3fff9}
+    .brand-title{font-size:12px;line-height:1;font-weight:850;letter-spacing:.19em;white-space:nowrap}
+    .brand-sub{margin-top:5px;font-size:8px;line-height:1;font-weight:850;letter-spacing:.24em;color:var(--mint)}
+    .top-meta{display:flex;align-items:center;gap:8px}
+    .gate-live{display:none;align-items:center;gap:6px;padding:8px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(13,30,39,.82);font-size:9px;font-weight:820;letter-spacing:.12em;color:#ceefe2}
+    .gate-live i{width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(131,239,190,.08),0 0 14px rgba(131,239,190,.72)}
+    .create-btn{width:44px;height:44px;border:0;border-radius:16px;color:#092117;background:linear-gradient(135deg,#c5ffe7,#72e5b4);font-size:29px;line-height:1;font-weight:350;box-shadow:0 13px 28px rgba(54,212,145,.24)}
+    .create-btn:active,.primary:active,.nav-create:active{transform:translateY(1px) scale(.97)}
+    main{max-width:760px;margin:0 auto;padding:18px 16px 32px}
+    .page{animation:rise .32s cubic-bezier(.2,.8,.2,1)}
+    @keyframes rise{from{opacity:.01;transform:translateY(8px);filter:blur(2px)}to{opacity:1;transform:none;filter:none}}
+    .eyebrow{margin:0 0 11px;color:var(--mint);font-weight:850;font-size:10px;letter-spacing:.17em;text-transform:uppercase}
+    .eyebrow .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--mint);margin-right:7px;vertical-align:1px;box-shadow:0 0 0 4px rgba(131,239,190,.09),0 0 14px rgba(131,239,190,.76)}
+    h1{margin:0;color:#f6fbf8;font-size:clamp(37px,9.7vw,64px);line-height:.97;letter-spacing:-.08em;font-weight:800} h1 em{font-style:normal;color:var(--mint)}
+    h2{margin:0;letter-spacing:-.055em;font-size:24px;line-height:1.06} h3{margin:0;letter-spacing:-.04em}
+    .lead{margin:14px 0 0;max-width:590px;color:var(--muted);font-size:15px;line-height:1.61}
+    .hero{position:relative;overflow:hidden;margin-top:24px;padding:22px;border:1px solid rgba(173,249,218,.18);border-radius:var(--radius-xl);background:linear-gradient(135deg,rgba(24,53,62,.98),rgba(12,29,41,.98));box-shadow:var(--shadow)}
+    .hero:before{content:"";position:absolute;inset:0;opacity:.55;background:linear-gradient(112deg,transparent 0 51%,rgba(145,250,211,.08) 51.15% 51.35%,transparent 51.5%),linear-gradient(29deg,transparent 0 70%,rgba(119,215,255,.06) 70.1% 70.3%,transparent 70.5%)}
+    .hero:after{content:"";position:absolute;right:-86px;top:-98px;width:285px;height:285px;border-radius:50%;background:radial-gradient(circle,rgba(156,255,212,.55) 0 4%,rgba(110,218,249,.24) 19%,rgba(114,240,182,.07) 48%,transparent 67%)}
+    .hero>*{position:relative;z-index:1}.hero-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.mini-pill{padding:8px 10px;border-radius:999px;border:1px solid rgba(163,252,216,.18);background:rgba(7,22,29,.46);color:#d8ffea;font-size:9px;font-weight:820;letter-spacing:.13em}.mini-pill span{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--mint);margin-right:6px;vertical-align:1px}
+    .nim-avatar{width:39px;height:39px;border-radius:15px;display:grid;place-items:center;color:#0c281c;font-weight:900;letter-spacing:-.07em;background:linear-gradient(135deg,#c3ffe3,#72d9ff);box-shadow:0 12px 25px rgba(88,214,175,.18)}
+    .hero h2{margin-top:30px;max-width:420px;font-size:31px}.hero h2 strong{color:var(--mint)}.hero p{margin:12px 0 0;max-width:470px;color:rgba(223,241,242,.71);font-size:13px;line-height:1.55}.hero-foot{margin-top:23px;display:flex;align-items:center;gap:12px;justify-content:space-between}.hero-stats{display:flex;gap:17px}.hero-stat{display:grid;gap:3px}.hero-stat b{font-size:15px;letter-spacing:-.05em}.hero-stat span{font-size:8px;color:rgba(218,241,237,.54);font-weight:800;letter-spacing:.12em}
+    .primary,.secondary,.ghost,.danger{border-radius:15px;padding:13px 15px;font-size:13px;font-weight:820;transition:transform .16s ease,background .16s ease}.primary{border:0;color:#092117;background:linear-gradient(135deg,#c1ffe5,#75e6b7);box-shadow:0 12px 27px rgba(44,205,137,.2)}.secondary{border:1px solid rgba(158,243,208,.18);color:#e7fcf1;background:rgba(97,202,166,.13)}.ghost{border:1px solid var(--line);color:#dff4eb;background:rgba(17,35,46,.68)}.danger{border:1px solid rgba(255,156,161,.22);color:#ffd2d4;background:rgba(171,55,64,.12)}.primary.small,.secondary.small,.ghost.small{padding:10px 12px;border-radius:13px;font-size:11px}.secondary:active,.ghost:active{transform:translateY(1px)}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin:33px 0 13px}.section-head h2{font-size:20px}.section-head p{margin:0;color:var(--muted);font-size:11px}.section-head .linkbtn{border:0;background:transparent;color:var(--mint);font-weight:800;font-size:12px;padding:0}
+    .metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.metric{min-height:98px;padding:15px;border-radius:19px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(25,46,58,.76),rgba(11,24,35,.88));box-shadow:0 15px 35px rgba(0,0,0,.15)}.metric b{display:block;font-size:28px;letter-spacing:-.08em;color:#f1fbf6}.metric span{display:block;margin-top:5px;color:var(--muted);font-size:10px;line-height:1.3}
+    .case-list{display:grid;gap:11px}.case-card{position:relative;width:100%;overflow:hidden;padding:17px;border:1px solid var(--line);border-radius:22px;color:var(--ink);text-align:left;background:linear-gradient(145deg,rgba(25,46,58,.82),rgba(10,23,34,.92));box-shadow:0 13px 30px rgba(0,0,0,.14)}.case-card:after{content:"";position:absolute;right:-35px;top:-35px;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,rgba(122,240,192,.16),transparent 68%)}.case-card:hover{border-color:rgba(151,244,206,.32)}.case-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.case-title{margin:0;max-width:70%;font-size:17px;letter-spacing:-.04em}.case-copy{margin:8px 0 14px;color:var(--muted);font-size:12px;line-height:1.5}.case-meta{display:flex;align-items:center;justify-content:space-between;color:var(--muted2);font-size:10px;font-weight:750}.badge{display:inline-flex;align-items:center;gap:6px;padding:7px 9px;border-radius:999px;border:1px solid currentColor;font-size:9px;font-weight:850;letter-spacing:.075em;white-space:nowrap}.badge.yes{color:var(--mint);background:rgba(131,239,190,.08)}.badge.no{color:var(--amber);background:rgba(255,201,128,.08)}.badge.partner{color:var(--cyan);background:rgba(114,217,255,.08)}.badge.review{color:var(--violet);background:rgba(185,167,255,.08)}.badge i{width:5px;height:5px;border-radius:50%;background:currentColor}
+    .empty{padding:25px 20px;border:1px dashed rgba(192,239,225,.2);border-radius:22px;background:rgba(12,27,37,.45);text-align:center}.empty-icon{width:49px;height:49px;display:grid;place-items:center;margin:0 auto 12px;border-radius:18px;color:var(--mint);background:rgba(131,239,190,.1);font-size:22px}.empty h3{font-size:18px}.empty p{margin:8px auto 16px;max-width:360px;color:var(--muted);font-size:12px;line-height:1.5}
+    .quote-strip{margin-top:13px;padding:17px;border-radius:19px;border:1px solid rgba(122,217,255,.14);background:linear-gradient(135deg,rgba(35,62,78,.48),rgba(17,34,45,.6));color:#c7e7e8;font-size:13px;line-height:1.53}.quote-strip b{color:var(--mint)}
+
+    .form-shell{margin-top:24px;padding:18px;border:1px solid var(--line);border-radius:var(--radius-xl);background:linear-gradient(145deg,rgba(22,43,54,.9),rgba(9,22,32,.96));box-shadow:var(--shadow)}.step-row{display:flex;gap:6px;margin-bottom:20px}.step{flex:1;height:5px;border-radius:999px;background:rgba(220,246,238,.12)}.step.active{background:linear-gradient(90deg,var(--mint),var(--cyan));box-shadow:0 0 12px rgba(131,239,190,.35)}.form-note{margin:0 0 20px;color:var(--muted);font-size:12px;line-height:1.5}.field{margin:0 0 16px}.field label{display:block;margin:0 0 8px;color:#e8f6ef;font-size:12px;font-weight:770}.field label span{color:var(--muted);font-weight:500}.field input,.field textarea,.field select{width:100%;padding:13px 14px;border:1px solid rgba(210,245,236,.13);border-radius:14px;color:var(--ink);background:rgba(4,14,21,.48);font-size:14px;line-height:1.45;transition:border-color .15s ease,background .15s ease}.field input::placeholder,.field textarea::placeholder{color:#66808a}.field textarea{min-height:108px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:rgba(131,239,190,.46);background:rgba(7,20,28,.75)}.field select option{background:#0c1922;color:#f3f8f6}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.form-actions{display:flex;gap:10px;margin-top:22px}.form-actions>*{flex:1}.consent{display:flex;align-items:flex-start;gap:10px;margin:5px 0 0;color:var(--muted);font-size:11px;line-height:1.46}.consent input{margin-top:2px;accent-color:var(--mint)}
+    .form-warning{padding:12px 13px;border-radius:14px;border:1px solid rgba(255,201,128,.2);background:rgba(117,82,22,.13);color:#f2cc8b;font-size:11px;line-height:1.5}
+
+    .back{display:inline-flex;align-items:center;gap:7px;margin:0 0 16px;padding:0;border:0;background:transparent;color:var(--mint);font-size:12px;font-weight:800}.case-detail-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.case-detail-title{margin:0;font-size:31px;line-height:1.02;letter-spacing:-.07em}.case-detail-sub{margin:8px 0 0;color:var(--muted);font-size:12px;line-height:1.5}.score-card{position:relative;overflow:hidden;margin-top:20px;padding:20px;border:1px solid rgba(171,246,218,.16);border-radius:var(--radius-xl);background:linear-gradient(135deg,rgba(31,73,68,.95),rgba(18,39,59,.98));box-shadow:var(--shadow)}.score-card:after{content:"";position:absolute;right:-56px;bottom:-67px;width:180px;height:180px;border-radius:50%;border:1px solid rgba(166,247,215,.42);box-shadow:0 0 0 18px rgba(166,247,215,.06),0 0 0 37px rgba(166,247,215,.032)}.score-card>*{position:relative;z-index:1}.score-label{font-size:9px;color:rgba(222,255,241,.62);font-weight:850;letter-spacing:.14em}.score-line{display:flex;align-items:flex-end;gap:12px;margin-top:10px}.score-number{color:var(--mint);font-size:58px;line-height:.81;font-weight:820;letter-spacing:-.1em}.score-copy{padding-bottom:2px;color:rgba(235,255,249,.72);font-size:12px;line-height:1.4;max-width:220px}.score-bar{height:7px;margin-top:20px;border-radius:99px;background:rgba(255,255,255,.15);overflow:hidden}.score-bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--mint),var(--cyan));box-shadow:0 0 14px rgba(131,239,190,.55)}
+    .decision-card{margin-top:15px;padding:18px;border:1px solid var(--line);border-radius:var(--radius-lg);background:linear-gradient(145deg,rgba(24,46,58,.82),rgba(10,23,34,.93));box-shadow:0 14px 32px rgba(0,0,0,.16)}.nim-line{display:flex;align-items:center;gap:10px}.nim-mini{width:30px;height:30px;border-radius:11px;display:grid;place-items:center;color:#0e2a1f;font-size:12px;font-weight:900;background:linear-gradient(135deg,var(--mint2),var(--cyan))}.nim-line strong{display:block;font-size:12px}.nim-line span{display:block;margin-top:2px;color:var(--muted);font-size:10px}.decision-card h3{margin:14px 0 7px;font-size:22px}.decision-card>p{margin:0;color:var(--muted);font-size:13px;line-height:1.56}.reason-grid{display:grid;gap:9px;margin-top:15px}.reason{padding:13px;border-radius:16px;border:1px solid rgba(215,245,238,.10);background:rgba(5,15,22,.3)}.reason-label{font-size:9px;font-weight:850;letter-spacing:.14em;color:var(--mint)}.reason.warn .reason-label{color:var(--amber)}.reason p{margin:7px 0 0;color:#cbd9d8;font-size:12px;line-height:1.48}.decision-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+    .criteria{margin-top:15px}.criteria-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}.criteria-row:last-child{border-bottom:0}.criteria-name{display:block;font-size:12px;font-weight:750}.criteria-hint{display:block;margin-top:4px;color:var(--muted);font-size:10px}.criteria-score{min-width:42px;text-align:right;color:var(--mint);font-size:13px;font-weight:820}.criteria-track{grid-column:1/-1;height:5px;border-radius:999px;background:rgba(230,248,241,.1);overflow:hidden}.criteria-track i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--mint),var(--cyan))}
+    .thread{display:grid;gap:10px;margin-top:14px}.message{max-width:89%;padding:13px 14px;border-radius:18px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(26,49,61,.8),rgba(11,24,35,.9))}.message.user{justify-self:end;border-color:rgba(131,239,190,.17);background:linear-gradient(145deg,rgba(28,70,61,.8),rgba(10,31,33,.95))}.message-head{display:flex;gap:7px;align-items:center;color:var(--mint);font-size:9px;font-weight:850;letter-spacing:.11em}.message.user .message-head{color:#bcefd7;justify-content:flex-end}.message p{margin:7px 0 0;color:#d3e0df;font-size:12px;line-height:1.5}.reply-box{margin-top:14px;padding:14px;border:1px solid var(--line);border-radius:18px;background:rgba(8,19,28,.53)}.reply-box textarea{width:100%;min-height:92px;padding:0;border:0;resize:vertical;color:var(--ink);background:transparent;font-size:13px;line-height:1.5}.reply-box textarea:focus{outline:none}.reply-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px}.reply-actions span{color:var(--muted2);font-size:10px}
+    .partner-card{margin-top:15px;padding:18px;border:1px solid rgba(114,217,255,.19);border-radius:var(--radius-lg);background:linear-gradient(145deg,rgba(18,49,66,.76),rgba(12,26,41,.92))}.partner-card .eyebrow{color:var(--cyan);margin-bottom:8px}.partner-card p{margin:8px 0 15px;color:var(--muted);font-size:12px;line-height:1.54}.partner-card b{color:#ddf7f4}.partner-status{display:flex;align-items:center;gap:8px;margin-top:12px;color:var(--cyan);font-size:11px;font-weight:800}.partner-status i{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px rgba(114,217,255,.6)}
+    .guide-stack{display:grid;gap:10px;margin-top:20px}.guide{display:grid;grid-template-columns:38px 1fr;gap:12px;padding:15px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(26,48,60,.74),rgba(11,24,35,.88))}.guide-no{width:34px;height:34px;display:grid;place-items:center;border-radius:12px;color:#0e2c20;font-weight:900;background:linear-gradient(135deg,var(--mint),var(--cyan))}.guide h3{font-size:15px}.guide p{margin:5px 0 0;color:var(--muted);font-size:12px;line-height:1.48}.rule-note{margin-top:16px;padding:15px;border-radius:17px;border:1px solid rgba(255,201,128,.18);background:rgba(104,75,23,.13);color:#f0cb8a;font-size:12px;line-height:1.53}
+    .profile-card{padding:20px;border:1px solid var(--line);border-radius:var(--radius-xl);background:linear-gradient(145deg,rgba(25,46,58,.86),rgba(10,23,34,.95));box-shadow:var(--shadow)}.profile-avatar{width:54px;height:54px;display:grid;place-items:center;border-radius:19px;color:#09251b;font-size:22px;font-weight:900;background:linear-gradient(135deg,var(--mint2),var(--cyan))}.profile-card h2{margin:15px 0 6px;font-size:27px}.profile-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.55}.setting-list{margin-top:18px;border-top:1px solid var(--line)}.setting{width:100%;padding:16px 0;display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--ink);text-align:left;border:0;border-bottom:1px solid var(--line);background:transparent}.setting b{display:block;font-size:13px}.setting span{display:block;margin-top:4px;color:var(--muted);font-size:10px;line-height:1.4}.setting i{color:var(--mint);font-size:19px;font-style:normal}
+    .bottom-nav{position:fixed;z-index:40;left:50%;bottom:calc(11px + var(--safe-bottom));transform:translateX(-50%);width:min(calc(100% - 22px),620px);height:68px;display:grid;grid-template-columns:1fr 1fr 58px 1fr 1fr;align-items:center;gap:1px;padding:7px;border:1px solid rgba(218,246,238,.13);border-radius:25px;background:rgba(10,24,34,.82);backdrop-filter:blur(22px) saturate(1.25);box-shadow:0 17px 46px rgba(0,0,0,.42)}.nav-item{height:52px;padding:3px;border:0;border-radius:16px;color:#82979f;background:transparent;display:grid;place-items:center;align-content:center;gap:4px;font-size:9px;font-weight:760}.nav-item.active{color:#e8fff3;background:linear-gradient(145deg,rgba(104,225,177,.16),rgba(89,185,235,.08))}.nav-item svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.nav-create{justify-self:center;width:51px;height:51px;border:0;border-radius:19px;color:#0a251a;background:linear-gradient(135deg,#c4ffe4,#6edeb1);font-size:30px;font-weight:300;box-shadow:0 12px 28px rgba(48,205,140,.26)}.nav-create span{display:block;margin-top:-3px}
+    .modal-layer{position:fixed;z-index:100;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:max(14px,var(--safe-top)) 14px max(14px,var(--safe-bottom));background:rgba(2,9,13,.66);backdrop-filter:blur(10px)}.modal-layer.hidden{display:none}.modal{width:min(100%,630px);max-height:min(90vh,780px);overflow:auto;padding:20px;border:1px solid rgba(180,243,218,.17);border-radius:28px;background:linear-gradient(145deg,#142b37,#091923);box-shadow:0 28px 90px rgba(0,0,0,.62);animation:sheet .28s cubic-bezier(.2,.8,.2,1)}@keyframes sheet{from{transform:translateY(25px);opacity:.25}to{transform:none;opacity:1}}.modal-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.modal-top h2{font-size:25px}.modal-close{width:37px;height:37px;border-radius:13px;border:1px solid var(--line);color:#e2f6ee;background:rgba(15,31,42,.78);font-size:20px}.modal-sub{margin:8px 0 17px;color:var(--muted);font-size:12px;line-height:1.52}.option-grid{display:grid;gap:9px}.check-option{display:flex;align-items:flex-start;gap:10px;padding:13px;border:1px solid var(--line);border-radius:16px;background:rgba(5,16,23,.3);color:#e8f5f0;font-size:12px;line-height:1.44}.check-option input{margin-top:1px;accent-color:var(--mint)}.radio-option{display:flex;align-items:flex-start;gap:10px;padding:13px;border:1px solid var(--line);border-radius:16px;background:rgba(5,16,23,.3);color:#d9e8e2;font-size:12px;line-height:1.45}.radio-option input{margin-top:1px;accent-color:var(--mint)}.modal-foot{margin-top:18px}.smallprint{margin:13px 0 0;color:var(--muted2);font-size:10px;line-height:1.48}.toast{position:fixed;z-index:140;left:50%;bottom:calc(94px + var(--safe-bottom));transform:translateX(-50%);max-width:calc(100% - 32px);padding:11px 14px;border:1px solid rgba(146,244,205,.2);border-radius:999px;color:#eafff4;background:rgba(18,45,43,.96);box-shadow:0 10px 30px rgba(0,0,0,.35);font-size:12px;font-weight:760;backdrop-filter:blur(12px)}.toast.hidden{display:none}
+    @media (min-width:700px){.app{padding-left:232px;padding-bottom:0}.topbar{padding-left:28px;padding-right:28px}.gate-live{display:inline-flex}main{padding:35px 28px 55px}.bottom-nav{left:14px;top:14px;bottom:14px;transform:none;width:201px;height:auto;padding:13px;display:flex;flex-direction:column;align-items:stretch;gap:7px;border-radius:26px}.nav-item{height:49px;display:flex;align-items:center;justify-content:flex-start;gap:12px;padding:11px 12px;font-size:12px}.nav-create{order:-1;width:100%;height:51px;margin-bottom:12px}.form-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:390px){.hero{padding:18px}.hero h2{font-size:28px}.hero-stats{gap:11px}.form-grid{grid-template-columns:1fr}.topbar{padding-left:14px;padding-right:14px}main{padding-left:14px;padding-right:14px}.brand-title{font-size:11px}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark"><b>N</b></div>
+      <div><div class="brand-title">NIMOPRA</div><div class="brand-sub">GATE · ENTSCHEIDUNG</div></div>
+    </div>
+    <div class="top-meta"><div class="gate-live"><i></i>GATE 01</div><button class="create-btn" data-route="submit" aria-label="Idee einreichen">+</button></div>
+  </header>
+  <main id="app-main"></main>
+  <nav class="bottom-nav" aria-label="NIMOPRA Navigation">
+    <button class="nav-item" data-route="home" aria-label="Start"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-7h6v7"/></svg><span>Start</span></button>
+    <button class="nav-item" data-route="inbox" aria-label="Einreichungen"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 9h16M8 4v5M16 4v5M8 14h8M8 18h5"/></svg><span>Fälle</span></button>
+    <button class="nav-create" data-route="submit" aria-label="Idee einreichen"><span>+</span></button>
+    <button class="nav-item" data-route="guidelines" aria-label="Leitlinien"><svg viewBox="0 0 24 24"><path d="M12 3 4 7v5c0 5.2 3.4 8 8 9 4.6-1 8-3.8 8-9V7z"/><path d="m8.5 12 2.3 2.3L15.8 9"/></svg><span>Leitlinien</span></button>
+    <button class="nav-item" data-route="profile" aria-label="Profil"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.8 21c.8-4 3.2-6 7.2-6s6.4 2 7.2 6"/></svg><span>Profil</span></button>
+  </nav>
+</div>
+<div id="modal-root"></div><div id="toast" class="toast hidden"></div>
+<script>
+(() => {
+  const STORE = 'nimopra_gate_cases_v1';
+  const SESSION = 'nimopra_gate_route_v1';
+  let route = localStorage.getItem(SESSION) || 'home';
+  let selectedCase = null;
+  let modal = null;
+  let toastTimer = null;
+  const app = document.getElementById('app-main');
+  const modalRoot = document.getElementById('modal-root');
+  const toast = document.getElementById('toast');
+
+  const icons = {
+    arrow: '→',
+    check: '✓',
+    spark: '✦',
+    inbox: '⌁'
+  };
+
+  const defaultState = { cases: [] };
+  function load(){
+    try { return JSON.parse(localStorage.getItem(STORE)) || structuredClone(defaultState); }
+    catch { return structuredClone(defaultState); }
+  }
+  let state = load();
+  function save(){ localStorage.setItem(STORE, JSON.stringify(state)); }
+  function esc(v=''){ return String(v).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
+  function dateLabel(ts){ return new Intl.DateTimeFormat('de-DE',{day:'2-digit',month:'short',year:'numeric'}).format(new Date(ts)); }
+  function wordCount(text){ return String(text || '').trim().split(/\s+/).filter(Boolean).length; }
+  function caseTitle(c){ return esc(c.title || 'Unbenannte Idee'); }
+  function selected(){ return state.cases.find(c => c.id === selectedCase); }
+  function showToast(msg){ toast.textContent=msg; toast.classList.remove('hidden'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>toast.classList.add('hidden'),2600); }
+  function setRoute(next){ route=next; selectedCase=null; localStorage.setItem(SESSION,route); render(); window.scrollTo({top:0,behavior:'smooth'}); }
+  function statusMeta(c){
+    if(c.partnerRequest) return ['partner','PARTNERANFRAGE'];
+    if(c.status === 'yes') return ['yes','JA · WEITER PRÜFEN'];
+    if(c.status === 'no') return ['no','NEIN · JETZT NICHT'];
+    return ['review','NEU PRÜFEN'];
+  }
+  function scoreFor(c){ return Math.max(0,Math.min(100, c.assessment?.score || 0)); }
+  function countByStatus(){
+    return {
+      all:state.cases.length,
+      yes:state.cases.filter(c=>c.status==='yes').length,
+      partner:state.cases.filter(c=>c.partnerRequest).length
+    }
+  }
+  function assess(input, additional=''){
+    const description = (input.idea || '')+' '+(input.problem || '')+' '+(input.audience || '')+' '+(input.difference || '')+' '+(input.founder || '')+' '+additional;
+    const lower = description.toLowerCase();
+    const hasMoney = /(zahl|preis|kauf|kosten|umsatz|geld|spar|budget|abon|verkauf|kund)/.test(lower);
+    const hasTest = /(test|pilot|prototyp|landing|gespräch|vorbestell|mvp|demo|nutzer)/.test(lower);
+    const hasBenefit = /(schnell|einfach|sicher|gesund|zeit|besser|günstig|effizient|schutz|hilf|löst)/.test(lower);
+    const hasClarity = wordCount(input.problem) >= 10;
+    const hasAudience = wordCount(input.audience) >= 4;
+    const hasDiffer = wordCount(input.difference) >= 8;
+    const hasFounder = wordCount(input.founder) >= 8;
+    const stageValue = ({'gedanke':3,'skizze':7,'test':11,'pilot':14})[input.stage] || 2;
+    const problem = Math.min(20, hasClarity ? 14 + Math.min(6, Math.floor(wordCount(input.problem)/12)) : 6 + Math.min(4,wordCount(input.problem)));
+    const audience = Math.min(15, hasAudience ? 10 + Math.min(5,Math.floor(wordCount(input.audience)/6)) : 4 + Math.min(4,wordCount(input.audience)));
+    const value = Math.min(15, (hasBenefit?9:4)+(wordCount(input.idea)>28?3:0)+(hasMoney?3:0));
+    const testability = Math.min(15, stageValue + (hasTest?2:0));
+    const difference = Math.min(15, hasDiffer ? 10 + (hasBenefit?2:0) : 4 + Math.min(3, wordCount(input.difference)));
+    const feasibility = Math.min(10, (wordCount(input.idea)>25?5:2) + (input.stage !== 'gedanke'?3:1) + (hasTest?2:0));
+    const commitment = Math.min(10, hasFounder ? 7 + (wordCount(input.founder)>25?2:0) : 3 + Math.min(3,wordCount(input.founder)));
+    const score = problem + audience + value + testability + difference + feasibility + commitment;
+    const yes = score >= 60 && hasClarity && hasAudience;
+    const criteria = [
+      ['Problemklarheit', problem, 20, hasClarity ? 'Ein konkreter Schmerzpunkt ist erkennbar.' : 'Das Problem braucht noch einen klareren Satz.'],
+      ['Zielgruppe', audience, 15, hasAudience ? 'Die erste Zielperson ist greifbar.' : 'Noch nicht klar genug: Wer braucht das zuerst?'],
+      ['Nutzen & Zahlungsgrund', value, 15, hasMoney || hasBenefit ? 'Ein Nutzenversprechen ist sichtbar.' : 'Der Nutzen oder Zahlungsgrund ist noch offen.'],
+      ['Testbarkeit', testability, 15, hasTest || input.stage !== 'gedanke' ? 'Ein realistischer erster Test ist möglich.' : 'Beschreibe den kleinsten echten Test.'],
+      ['Unterscheidung', difference, 15, hasDiffer ? 'Ein möglicher Unterschied zum Bestehenden ist benannt.' : 'Warum gerade diese Lösung? Das fehlt noch.'],
+      ['Umsetzbarkeit', feasibility, 10, 'Der Start wirkt im ersten Schritt machbar.'],
+      ['Gründer-Passung', commitment, 10, hasFounder ? 'Dein persönlicher Antrieb ist erkennbar.' : 'NIM braucht deinen konkreten Grund für diese Idee.']
+    ];
+    const yesReasons=[]; const open=[];
+    if(hasClarity) yesReasons.push('ein konkretes Problem erkennbar ist'); else open.push('das Problem noch nicht klar genug formuliert ist');
+    if(hasAudience) yesReasons.push('eine erste Zielgruppe benannt ist'); else open.push('die erste Zielgruppe noch zu allgemein bleibt');
+    if(hasTest || input.stage !== 'gedanke') yesReasons.push('ein realistischer Testweg sichtbar wird'); else open.push('noch kein Beweisweg beschrieben ist');
+    if(hasDiffer) yesReasons.push('eine eigene Richtung gegenüber bestehenden Lösungen sichtbar wird'); else open.push('der Unterschied zu bestehenden Lösungen fehlt');
+    if(!hasMoney && !hasBenefit) open.push('der konkrete Nutzen oder Zahlungsgrund offen bleibt');
+    if(!hasFounder) open.push('dein persönlicher Einsatz noch nicht greifbar ist');
+    return {
+      score, yes,
+      verdict: yes ? 'JA — weiter prüfen' : 'NEIN — im aktuellen Stand',
+      summary: yes ? 'Die Idee überquert Gate 01. Sie ist noch kein fertiges Geschäft, aber sie verdient eine strukturierte Weiterprüfung.' : 'Die Idee überquert Gate 01 noch nicht. Das ist kein endgültiges Nein zur Idee — nur ein Nein zu diesem aktuellen Stand.',
+      yesReasons: yesReasons.slice(0,3),
+      open: open.slice(0,4),
+      criteria
+    };
+  }
+  function caseCard(c){
+    const [cl,tx]=statusMeta(c); const score=scoreFor(c);
+    return `<button class="case-card" data-open-case="${c.id}">
+      <div class="case-top"><h3 class="case-title">${caseTitle(c)}</h3><span class="badge ${cl}"><i></i>${tx}</span></div>
+      <p class="case-copy">${esc((c.idea||'').slice(0,150))}${(c.idea||'').length>150?'…':''}</p>
+      <div class="case-meta"><span>Gate-Score ${score}/100</span><span>${dateLabel(c.createdAt)}</span></div>
+    </button>`;
+  }
+  function renderHome(){
+    const counts=countByStatus();
+    const newest=[...state.cases].sort((a,b)=>b.createdAt-a.createdAt).slice(0,3);
+    return `<section class="page">
+      <p class="eyebrow"><span class="dot"></span>NIMOPRA GATE · KLARE PRÜFUNG</p>
+      <h1>Ideen brauchen<br><em>eine Entscheidung.</em></h1>
+      <p class="lead">NIMOPRA GATE prüft, ob eine Idee ein echtes Problem lösen kann — mit klaren Leitlinien, einer begründeten Entscheidung und einer zweiten Chance für neue Belege.</p>
+      <div class="hero">
+        <div class="hero-top"><span class="mini-pill"><span></span>NIM · STIMME VON NIMOPRA</span><div class="nim-avatar">N</div></div>
+        <h2>Wir sagen <strong>Ja</strong>, wenn eine Idee es verdient, weitergetragen zu werden.</h2>
+        <p>Und wir sagen Nein, wenn die Grundlage noch nicht trägt — offen, begründet und mit einer Antwortmöglichkeit.</p>
+        <div class="hero-foot"><div class="hero-stats"><div class="hero-stat"><b>${counts.all}</b><span>FÄLLE</span></div><div class="hero-stat"><b>${counts.yes}</b><span>WEITER</span></div><div class="hero-stat"><b>${counts.partner}</b><span>PARTNER</span></div></div><button class="primary small" data-route="submit">Idee einreichen ${icons.arrow}</button></div>
+      </div>
+      <div class="section-head"><div><h2>Deine Fälle</h2><p>Entscheidungen und Antworten an einem Ort.</p></div>${state.cases.length?'<button class="linkbtn" data-route="inbox">Alle ansehen</button>':''}</div>
+      ${newest.length ? `<div class="case-list">${newest.map(caseCard).join('')}</div>` : `<div class="empty"><div class="empty-icon">${icons.spark}</div><h3>Der erste Fall beginnt hier.</h3><p>Beschreibe eine Idee ehrlich. NIM prüft sie nach denselben Leitlinien wie jede andere Einreichung.</p><button class="primary" data-route="submit">Erste Idee einreichen</button></div>`}
+      <div class="quote-strip"><b>Der NIMOPRA-Grundsatz:</b> Wir bewerten nicht den Menschen hinter einer Idee. Wir prüfen nur, ob die Idee in ihrem aktuellen Stand genug Substanz für den nächsten Schritt hat.</div>
+    </section>`;
+  }
+  function renderInbox(){
+    const list=[...state.cases].sort((a,b)=>b.createdAt-a.createdAt);
+    return `<section class="page"><p class="eyebrow"><span class="dot"></span>FÄLLE & ENTSCHEIDUNGEN</p><h1>Deine <em>Einreichungen.</em></h1><p class="lead">Hier liegen alle Entscheidungen, Ergänzungen und Partnerschaftsanfragen. NIMOPRA behandelt jede Idee als eigenen Fall.</p><div class="section-head"><div><h2>${list.length?`${list.length} Fall${list.length===1?'':'e'}`:'Noch keine Fälle'}</h2></div><button class="primary small" data-route="submit">+ Einreichen</button></div>${list.length?`<div class="case-list">${list.map(caseCard).join('')}</div>`:`<div class="empty"><div class="empty-icon">⌁</div><h3>Noch keine Entscheidung.</h3><p>Reiche die erste Idee ein. NIM erstellt eine nachvollziehbare Gate-01-Einstufung.</p><button class="primary" data-route="submit">Idee einreichen</button></div>`}</section>`;
+  }
+  function renderGuidelines(){
+    const guides=[
+      ['01','Echtes Problem','Die Idee muss einen spürbaren Zustand verbessern, nicht nur technisch interessant sein.'],
+      ['02','Konkreter Mensch','NIM sucht zuerst den Menschen, der das Problem wirklich hat — nicht „alle“.'],
+      ['03','Klarer Nutzen','Es muss erkennbar werden, warum jemand Zeit, Vertrauen oder Geld geben würde.'],
+      ['04','Beweis statt Behauptung','Eine gute Idee braucht einen kleinen, echten Test statt nur Hoffnung.'],
+      ['05','Eigene Richtung','NIM prüft, ob etwas daran anders, besser oder gezielter ist als das, was schon existiert.'],
+      ['06','Machbarer erster Schritt','Große Visionen sind erlaubt. Der erste Schritt muss trotzdem realistisch sein.'],
+      ['07','Faire Partnerschaft','NIMOPRA beteiligt sich nie automatisch. Mehr Verantwortung, Aufwand und Risiko können später eine Beteiligung begründen — nur schriftlich und klar.']
+    ];
+    return `<section class="page"><p class="eyebrow"><span class="dot"></span>DER NIMOPRA STANDARD</p><h1>Nach festen<br><em>Leitlinien.</em></h1><p class="lead">NIM entscheidet nicht nach Stimmung. Jede Einreichung wird an denselben sieben Fragen gemessen.</p><div class="guide-stack">${guides.map(g=>`<article class="guide"><div class="guide-no">${g[0]}</div><div><h3>${g[1]}</h3><p>${g[2]}</p></div></article>`).join('')}</div><div class="rule-note">NIMOPRA GATE ist aktuell eine strukturierte erste Einschätzung. Eine Zusage, Investition, rechtliche Prüfung oder Beteiligung entsteht dadurch nicht.</div></section>`;
+  }
+  function renderProfile(){
+    const c=countByStatus();
+    return `<section class="page"><p class="eyebrow"><span class="dot"></span>DEIN NIMOPRA BEREICH</p><div class="profile-card"><div class="profile-avatar">N</div><h2>NIMOPRA GATE</h2><p>Deine Ideen und Antworten werden in dieser Vorschau lokal auf diesem Gerät gespeichert.</p><div class="metric-grid" style="margin-top:20px"><div class="metric"><b>${c.all}</b><span>eingereicht</span></div><div class="metric"><b>${c.yes}</b><span>weiter geprüft</span></div><div class="metric"><b>${c.partner}</b><span>Partnerschaft</span></div></div><div class="setting-list"><button class="setting" data-action="export"><span><b>Fälle sichern</b><span>Exportiert deine lokalen Fälle als Datei.</span></span><i>›</i></button><button class="setting" data-action="clear"><span><b>Lokale Daten löschen</b><span>Entfernt Fälle nur von diesem Gerät.</span></span><i>›</i></button></div></div><div class="quote-strip"><b>Wichtig für den späteren echten Launch:</b> Öffentliche Einreichungen brauchen einen sicheren Server, Datenschutz, Nutzungsbedingungen und einen echten Nachrichteneingang. Diese Version ist der sichtbare, lokale Produktkern.</div></section>`;
+  }
+  function renderSubmit(){
+    return `<section class="page"><p class="eyebrow"><span class="dot"></span>GATE 01 · EINREICHUNG</p><h1>Stell deine Idee<br><em>auf die Probe.</em></h1><p class="lead">NIM will keine perfekte Präsentation. Beschreibe ehrlich, was du verändern willst. Danach bekommst du eine klare Ja-/Nein-Einstufung mit Gründen.</p>
+      <form id="submission-form" class="form-shell">
+        <div class="step-row"><div class="step active"></div><div class="step active"></div><div class="step active"></div></div>
+        <p class="form-note">Je klarer Problem, Zielperson und erster Nutzen beschrieben sind, desto ehrlicher kann NIM entscheiden.</p>
+        <div class="field"><label for="title">Name der Idee <span>· intern</span></label><input id="title" name="title" required maxlength="80" placeholder="z. B. Akku-Retter für E-Bikes" /></div>
+        <div class="field"><label for="idea">Was ist deine Idee? <span>· kurz, aber verständlich</span></label><textarea id="idea" name="idea" required maxlength="1500" placeholder="Beschreibe die Lösung, nicht nur die Technik."></textarea></div>
+        <div class="field"><label for="problem">Welches konkrete Problem löst sie?</label><textarea id="problem" name="problem" required maxlength="900" placeholder="Was ist heute für wen schwierig, teuer, langsam oder unsicher?"></textarea></div>
+        <div class="field"><label for="audience">Wer braucht das zuerst?</label><input id="audience" name="audience" required maxlength="280" placeholder="z. B. Pendler mit älteren E-Bikes in Städten" /></div>
+        <div class="field"><label for="difference">Warum könnte deine Lösung besser oder anders sein?</label><textarea id="difference" name="difference" maxlength="900" placeholder="Was wird besser, einfacher, günstiger oder sicherer als bisher?"></textarea></div>
+        <div class="form-grid"><div class="field"><label for="stage">Wo stehst du?</label><select id="stage" name="stage"><option value="gedanke">Nur eine Idee</option><option value="skizze">Skizze / Konzept</option><option value="test">Erster Test geplant</option><option value="pilot">Prototyp oder Pilot vorhanden</option></select></div><div class="field"><label for="founder">Warum gerade du?</label><input id="founder" name="founder" maxlength="500" placeholder="Dein Bezug zur Idee" /></div></div>
+        <div class="form-warning">Keine vertraulichen Geheimrezepte, Patentschriften oder persönlichen Daten eingeben. Diese Version speichert deinen Fall nur lokal auf diesem Gerät.</div>
+        <label class="consent"><input type="checkbox" required /> <span>Ich verstehe: Das Ergebnis ist eine strukturierte NIMOPRA-GATE-Einstufung, keine Garantie, Investitionszusage oder Rechtsberatung.</span></label>
+        <div class="form-actions"><button type="button" class="ghost" data-action="fill-example">Beispiel laden</button><button class="primary" type="submit">NIM entscheiden lassen ${icons.arrow}</button></div>
+      </form></section>`;
+  }
+  function renderCaseDetail(c){
+    const a=c.assessment; const [cl,tx]=statusMeta(c); const score=scoreFor(c);
+    const thread=(c.thread||[]).map(m=>`<div class="message ${m.author==='Du'?'user':''}"><div class="message-head">${m.author==='Du'?'DU':'NIM · NIMOPRA'} <span>·</span> ${dateLabel(m.createdAt)}</div><p>${esc(m.text)}</p></div>`).join('');
+    const reasons=(a.yesReasons||[]).map(r=>`<div class="reason"><div class="reason-label">JA, WEIL …</div><p>${esc(r)}</p></div>`).join('') || `<div class="reason"><div class="reason-label">STÄRKE</div><p>Der erste Ansatz enthält verwertbare Elemente.</p></div>`;
+    const open=(a.open||[]).map(r=>`<div class="reason warn"><div class="reason-label">NOCH OFFEN</div><p>${esc(r)}</p></div>`).join('');
+    return `<section class="page"><button class="back" data-route="inbox">← Zurück zu den Fällen</button><div class="case-detail-head"><div><p class="eyebrow"><span class="dot"></span>FALL · ${dateLabel(c.createdAt).toUpperCase()}</p><h1 class="case-detail-title">${caseTitle(c)}</h1><p class="case-detail-sub">${esc(c.idea)}</p></div><span class="badge ${cl}"><i></i>${tx}</span></div>
+      <div class="score-card"><div class="score-label">GATE-01-SCORE</div><div class="score-line"><div class="score-number">${score}</div><p class="score-copy">NIM misst die Grundlage für eine Weiterprüfung — nicht den Wert der Person hinter der Idee.</p></div><div class="score-bar"><i style="width:${score}%"></i></div></div>
+      <article class="decision-card"><div class="nim-line"><div class="nim-mini">N</div><div><strong>NIM hat entschieden</strong><span>Die Stimme von NIMOPRA · Gate 01</span></div></div><h3>${esc(a.verdict)}</h3><p>${esc(a.summary)}</p><div class="reason-grid">${reasons}${open}</div><div class="decision-actions">${c.status==='yes'?`<button class="primary small" data-action="partner" data-case="${c.id}">Hilfe anfragen ${icons.arrow}</button>`:''}<button class="secondary small" data-action="focus-reply">Auf Entscheidung antworten</button>${c.status==='no'?`<button class="ghost small" data-action="reassess" data-case="${c.id}">Nach Ergänzung neu prüfen</button>`:''}</div></article>
+      <div class="section-head"><div><h2>Leitlinien-Check</h2><p>So kommt die Entscheidung zustande.</p></div></div><div class="decision-card criteria">${a.criteria.map(([n,v,max,h])=>`<div class="criteria-row"><div><span class="criteria-name">${n}</span><span class="criteria-hint">${h}</span></div><b class="criteria-score">${v}/${max}</b><div class="criteria-track"><i style="width:${Math.round(v/max*100)}%"></i></div></div>`).join('')}</div>
+      ${c.partnerRequest?`<article class="partner-card"><p class="eyebrow">PARTNERSCHAFTS-ANFRAGE</p><h3>Dein Bedarf ist bei NIMOPRA vorgemerkt.</h3><p><b>Gewünschte Hilfe:</b> ${c.partnerRequest.needs.map(esc).join(', ')}<br><b>Gewünschte Tiefe:</b> ${esc(c.partnerRequest.depth)}</p><div class="partner-status"><i></i>Wird als eigener Fall geprüft</div></article>`:`${c.status==='yes'?`<article class="partner-card"><p class="eyebrow">NÄCHSTE STUFE</p><h3>Wo soll NIMOPRA Verantwortung übernehmen?</h3><p>Du entscheidest, ob wir nur Richtung geben, konkrete Teile aufbauen oder eine mögliche Venture-Partnerschaft prüfen sollen.</p><button class="secondary small" data-action="partner" data-case="${c.id}">Hilfe anfragen</button></article>`:''}`}
+      <div class="section-head"><div><h2>Antworten an NIM</h2><p>Neue Belege können die Entscheidung verändern.</p></div></div><div class="thread">${thread}</div>
+      <form class="reply-box" id="reply-form" data-case="${c.id}"><textarea id="reply-input" name="reply" maxlength="1500" placeholder="Was hat NIM übersehen? Welche Belege, Erfahrungen oder neue Informationen willst du ergänzen?"></textarea><div class="reply-actions"><span>Antwort wird deinem Fall hinzugefügt.</span><button class="primary small" type="submit">An NIM senden</button></div></form>
+      <div class="quote-strip"><b>NIMOPRA bleibt fair:</b> Eine Einreichung löst keine Beteiligung aus. Erst wenn beide Seiten bewusst Umfang, Risiko, Eigentum und mögliche Anteile schriftlich vereinbaren, kann daraus eine Partnerschaft entstehen.</div>
+    </section>`;
+  }
+  function render(){
+    let html;
+    if(selected()) html=renderCaseDetail(selected());
+    else if(route==='home') html=renderHome();
+    else if(route==='inbox') html=renderInbox();
+    else if(route==='guidelines') html=renderGuidelines();
+    else if(route==='profile') html=renderProfile();
+    else html=renderSubmit();
+    app.innerHTML=html;
+    document.querySelectorAll('[data-route]').forEach(el=>el.classList.toggle('active',el.dataset.route===route && !selectedCase));
+  }
+  function createCase(form){
+    const data=Object.fromEntries(new FormData(form).entries());
+    const assessment=assess(data);
+    const now=Date.now();
+    const c={id:'case_'+now+'_'+Math.random().toString(36).slice(2,7),title:data.title.trim(),idea:data.idea.trim(),problem:data.problem.trim(),audience:data.audience.trim(),difference:data.difference.trim(),stage:data.stage,founder:data.founder.trim(),createdAt:now,status:assessment.yes?'yes':'no',assessment,thread:[{author:'NIM',createdAt:now,text:assessment.yes?'Deine Idee hat Gate 01 überquert. NIM will als Nächstes sehen, welchen Beweis du als Erstes liefern kannst.':'NIM lehnt die Idee in ihrem aktuellen Stand ab. Das ist kein Ende: Ergänze konkrete Belege oder schärfe die offenen Punkte und fordere eine neue Prüfung an.'}]};
+    state.cases.unshift(c);save();selectedCase=c.id;route='inbox';localStorage.setItem(SESSION,route);render();showToast('NIM hat deine Einreichung bewertet.');
+  }
+  function sendReply(form){
+    const id=form.dataset.case; const c=state.cases.find(x=>x.id===id); const text=(new FormData(form).get('reply')||'').trim(); if(!c||!text){showToast('Schreibe zuerst deine Ergänzung.');return;} const now=Date.now(); c.thread.push({author:'Du',createdAt:now,text}); c.thread.push({author:'NIM',createdAt:now+1,text:'Ergänzung erhalten. NIM hat deine Antwort dem Fall zugeordnet. Wenn sie Problem, Zielperson, Nutzen oder Testbarkeit schärft, kannst du eine neue Gate-01-Prüfung anfordern.'}); c.lastReply=text;save();render();showToast('Deine Antwort liegt bei NIM vor.');
+  }
+  function reassess(id){ const c=state.cases.find(x=>x.id===id); if(!c)return; const extra=(c.thread||[]).filter(m=>m.author==='Du').map(m=>m.text).join(' '); if(wordCount(extra)<8){showToast('Ergänze zuerst konkrete neue Informationen für NIM.');document.getElementById('reply-input')?.focus();return;} const a=assess(c,extra);c.assessment=a;c.status=a.yes?'yes':'no';const now=Date.now();c.thread.push({author:'NIM',createdAt:now,text:a.yes?'Neue Entscheidung: Die Ergänzungen geben der Idee genug Substanz für eine Weiterprüfung. Gate 01 ist jetzt geöffnet.':'Neue Entscheidung: NIM sieht Fortschritt, aber Gate 01 bleibt noch geschlossen. Lies die offenen Punkte und ergänze nur die stärkste fehlende Information.'});save();render();showToast('NIM hat den Fall neu bewertet.'); }
+  function openPartner(id){ const c=state.cases.find(x=>x.id===id); if(!c)return; modal={type:'partner',caseId:id};renderModal(); }
+  function renderModal(){ if(!modal){modalRoot.innerHTML='';return;} if(modal.type==='partner'){modalRoot.innerHTML=`<div class="modal-layer" data-action="close-modal"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="partner-title" onclick="event.stopPropagation()"><div class="modal-top"><div><h2 id="partner-title">Hilfe von NIMOPRA</h2><p class="modal-sub">Sag uns, welche Verantwortung wir übernehmen sollen. Erst danach prüfen wir Umfang, Aufwand und eine mögliche faire Beteiligung.</p></div><button class="modal-close" data-action="close-modal">×</button></div><form id="partner-form" data-case="${modal.caseId}"><div class="option-grid"><label class="check-option"><input type="checkbox" name="needs" value="Idee schärfen"/> Idee schärfen & Positionierung</label><label class="check-option"><input type="checkbox" name="needs" value="Markt & Konkurrenz"/> Markt, Konkurrenz & Zielgruppe prüfen</label><label class="check-option"><input type="checkbox" name="needs" value="Name & Marke"/> Name, Marke & Auftreten entwickeln</label><label class="check-option"><input type="checkbox" name="needs" value="Geschäftsmodell"/> Geschäftsmodell & Einnahmeweg</label><label class="check-option"><input type="checkbox" name="needs" value="Website / Landingpage"/> Website, Landingpage oder Validierung</label><label class="check-option"><input type="checkbox" name="needs" value="App / Prototyp"/> App, Prototyp oder Produktaufbau</label><label class="check-option"><input type="checkbox" name="needs" value="Pitch & Partner"/> Pitch, Partner oder Investorenunterlagen</label></div><div class="field" style="margin-top:18px"><label>Wie tief soll NIMOPRA einsteigen?</label><div class="option-grid"><label class="radio-option"><input type="radio" name="depth" value="Richtung geben" required/> <span><b>Richtung geben</b><br>Wir prüfen, strukturieren und geben dir klare nächste Schritte.</span></label><label class="radio-option"><input type="radio" name="depth" value="Konkret mitbauen"/> <span><b>Konkret mitbauen</b><br>Wir übernehmen klar definierte Bausteine des Projekts.</span></label><label class="radio-option"><input type="radio" name="depth" value="Venture-Partnerschaft prüfen"/> <span><b>Venture-Partnerschaft prüfen</b><br>Wir prüfen, ob NIMOPRA größere Verantwortung, Risiko und mögliche Beteiligung übernehmen kann.</span></label></div></div><div class="field"><label for="partner-note">Was brauchst du am dringendsten?</label><textarea id="partner-note" name="note" placeholder="Was soll NIMOPRA dir konkret abnehmen?"></textarea></div><div class="modal-foot"><button class="primary" type="submit" style="width:100%">Partnerschaftsanfrage senden ${icons.arrow}</button><p class="smallprint">Eine Anfrage erzeugt keine automatische Beteiligung, Vergütung oder Zusage. Umfang, Eigentum, Risiko und mögliche Anteile gehören immer in eine separate schriftliche Vereinbarung.</p></div></form></section></div>`;}}
+  function submitPartner(form){const c=state.cases.find(x=>x.id===form.dataset.case);if(!c)return;const fd=new FormData(form);const needs=fd.getAll('needs');const depth=fd.get('depth');if(!needs.length||!depth){showToast('Wähle mindestens einen Bereich und die gewünschte Tiefe.');return;}const now=Date.now();c.partnerRequest={needs,depth,note:(fd.get('note')||'').trim(),createdAt:now};c.thread.push({author:'NIM',createdAt:now,text:'Die Partnerschaftsanfrage ist dem Fall zugeordnet. NIMOPRA prüft jetzt zuerst, welche Leistung wirklich sinnvoll ist und welche Verantwortung dafür nötig wäre.'});save();modal=null;renderModal();render();showToast('Partnerschaftsanfrage gespeichert.');}
+  function exportCases(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='nimopra-gate-faelle.json';a.click();URL.revokeObjectURL(url);showToast('Deine Fälle wurden gesichert.');}
+  function clearData(){ if(confirm('Alle lokalen NIMOPRA-GATE-Fälle auf diesem Gerät löschen?')){state=structuredClone(defaultState);save();selectedCase=null;route='home';render();showToast('Lokale Fälle wurden gelöscht.');}}
+  document.addEventListener('click',e=>{
+    const routeEl=e.target.closest('[data-route]');if(routeEl){setRoute(routeEl.dataset.route);return;}
+    const caseEl=e.target.closest('[data-open-case]');if(caseEl){selectedCase=caseEl.dataset.openCase;route='inbox';render();window.scrollTo({top:0,behavior:'smooth'});return;}
+    const actionEl=e.target.closest('[data-action]'); if(!actionEl)return; const act=actionEl.dataset.action;
+    if(act==='fill-example'){
+      document.getElementById('title').value='Akku-Check für E-Bikes';document.getElementById('idea').value='Eine einfache Prüfung, die Besitzern älterer E-Bike-Akkus zeigt, ob ein Akku noch sicher nutzbar ist und ob Reparatur sinnvoll wäre.';document.getElementById('problem').value='Viele Menschen wissen nicht, ob ein schwacher E-Bike-Akku nur leer, tiefentladen oder unsicher ist. Sie riskieren Fehlkäufe oder entsorgen funktionierende Akkus.';document.getElementById('audience').value='Besitzer älterer E-Bikes, kleine Fahrradwerkstätten und Gebrauchtkäufer.';document.getElementById('difference').value='Die Lösung übersetzt technische Akku-Daten in eine klare, sichere Entscheidung und einen nächsten Schritt.';document.getElementById('stage').value='test';document.getElementById('founder').value='Ich kenne das Problem aus dem Verkauf und Umgang mit gebrauchten Akkus.';showToast('Beispiel geladen.');return;}
+    if(act==='focus-reply'){document.getElementById('reply-input')?.focus();return;}
+    if(act==='reassess'){reassess(actionEl.dataset.case);return;}
+    if(act==='partner'){openPartner(actionEl.dataset.case);return;}
+    if(act==='close-modal'){modal=null;renderModal();return;}
+    if(act==='export'){exportCases();return;}
+    if(act==='clear'){clearData();return;}
+  });
+  document.addEventListener('submit',e=>{if(e.target.id==='submission-form'){e.preventDefault();createCase(e.target);}else if(e.target.id==='reply-form'){e.preventDefault();sendReply(e.target);}else if(e.target.id==='partner-form'){e.preventDefault();submitPartner(e.target);}});
+  render();
+})();
+</script>
+</body>
+</html>
