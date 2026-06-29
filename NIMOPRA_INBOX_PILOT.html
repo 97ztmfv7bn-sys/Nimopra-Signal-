@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071018">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="NIMOPRA GATE">
+  <meta name="description" content="NIMOPRA GATE – Idee einreichen, klare Vorprüfung erhalten, Antwort bekommen.">
+  <title>NIMOPRA GATE · Inbox Pilot</title>
+  <style>
+    :root{
+      --bg:#071018;--bg2:#0b1822;--panel:#0f202c;--panel2:#142a37;
+      --line:rgba(206,245,232,.14);--ink:#f4faf7;--muted:#9bb0b8;--soft:#6f8993;
+      --mint:#83efbe;--mint2:#c5ffe4;--cyan:#79ddff;--amber:#ffd08b;--red:#ff9da3;
+      --radius:24px;--safeTop:env(safe-area-inset-top,0px);--safeBottom:env(safe-area-inset-bottom,0px);
+    }
+    *{box-sizing:border-box}
+    html{background:var(--bg)}
+    body{margin:0;min-width:320px;color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+      background:
+      radial-gradient(820px 620px at -12% -15%,rgba(47,150,190,.28),transparent 61%),
+      radial-gradient(620px 460px at 112% 8%,rgba(69,226,166,.17),transparent 59%),
+      linear-gradient(180deg,#071018 0%,#08141d 55%,#061018 100%);-webkit-font-smoothing:antialiased}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;background-image:radial-gradient(rgba(255,255,255,.33) .45px,transparent .7px);background-size:5px 5px;mask-image:linear-gradient(#000,transparent 70%)}
+    button,input,textarea,select{font:inherit}button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+    button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid rgba(131,239,190,.38);outline-offset:3px}
+    .app{min-height:100vh;padding-bottom:calc(32px + var(--safeBottom))}
+    .topbar{position:sticky;top:0;z-index:20;height:calc(78px + var(--safeTop));padding:calc(11px + var(--safeTop)) 18px 11px;display:flex;align-items:center;justify-content:space-between;
+      background:linear-gradient(180deg,rgba(7,16,24,.98),rgba(7,16,24,.82) 72%,rgba(7,16,24,0));backdrop-filter:blur(18px)}
+    .brand{display:flex;align-items:center;gap:10px;min-width:0}.mark{width:43px;height:43px;border-radius:16px;display:grid;place-items:center;position:relative;background:conic-gradient(from 225deg,var(--mint),var(--cyan) 28%,#bba7ff 54%,var(--mint) 84%,var(--mint));box-shadow:0 12px 30px rgba(80,220,166,.22)}
+    .mark:before{content:"";position:absolute;inset:2px;border-radius:14px;background:#0c1b25}.mark b{position:relative;z-index:1;letter-spacing:-.08em;color:#f6fff9;font-size:18px}
+    .brand-name{font-size:12px;letter-spacing:.19em;font-weight:900}.brand-sub{margin-top:4px;font-size:8px;letter-spacing:.22em;font-weight:850;color:var(--mint)}
+    .mode{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:8px 10px;background:rgba(15,34,45,.72);color:#d5f5e8;font-size:9px;letter-spacing:.12em;font-weight:850}.mode i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(131,239,190,.09),0 0 12px rgba(131,239,190,.7)}
+    main{max-width:760px;margin:0 auto;padding:18px 16px 38px}
+    .eyebrow{margin:0 0 11px;color:var(--mint);font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:900}.eyebrow .dot{display:inline-block;width:6px;height:6px;background:var(--mint);border-radius:50%;vertical-align:1px;margin-right:7px;box-shadow:0 0 0 4px rgba(131,239,190,.08),0 0 12px rgba(131,239,190,.72)}
+    h1{margin:0;font-size:clamp(38px,10vw,65px);line-height:.97;letter-spacing:-.082em;font-weight:830}h1 em{font-style:normal;color:var(--mint)}
+    h2{margin:0;font-size:24px;letter-spacing:-.055em;line-height:1.08}h3{margin:0;letter-spacing:-.04em}
+    .lead{margin:14px 0 0;max-width:600px;color:var(--muted);font-size:15px;line-height:1.62}
+    .hero{position:relative;overflow:hidden;margin-top:24px;padding:23px;border:1px solid rgba(170,249,216,.17);border-radius:30px;background:linear-gradient(138deg,rgba(22,53,62,.98),rgba(11,29,41,.99));box-shadow:0 30px 70px rgba(0,0,0,.38)}
+    .hero:before{content:"";position:absolute;right:-86px;top:-95px;width:290px;height:290px;border-radius:50%;background:radial-gradient(circle,rgba(158,255,213,.54) 0 4%,rgba(109,219,250,.24) 19%,rgba(111,240,182,.07) 49%,transparent 67%)}.hero>*{position:relative;z-index:1}
+    .hero-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.pill{display:inline-flex;align-items:center;gap:7px;padding:8px 10px;border:1px solid rgba(165,252,218,.18);background:rgba(7,22,29,.47);border-radius:999px;color:#d9ffea;font-size:9px;letter-spacing:.12em;font-weight:850}.pill i{width:6px;height:6px;border-radius:50%;background:var(--mint);display:inline-block}
+    .nim{width:40px;height:40px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,#c4ffe5,#72dbff);color:#0b2b1c;font-size:17px;font-weight:950;letter-spacing:-.08em;box-shadow:0 12px 25px rgba(88,214,175,.17)}
+    .hero h2{margin-top:27px;max-width:470px;font-size:30px}.hero h2 b{color:var(--mint)}.hero p{margin:12px 0 0;max-width:485px;font-size:13px;line-height:1.57;color:rgba(224,242,243,.73)}
+    .hero-stats{display:flex;gap:18px;margin-top:22px}.hero-stat{display:grid;gap:3px}.hero-stat b{font-size:16px;letter-spacing:-.05em}.hero-stat span{font-size:8px;letter-spacing:.12em;color:rgba(218,241,237,.54);font-weight:800}
+    .notice{display:flex;gap:10px;margin:22px 0 0;padding:14px;border:1px solid var(--line);border-radius:18px;background:rgba(12,29,39,.74);color:var(--muted);font-size:11px;line-height:1.55}.notice b{color:#e5f7ee}.notice .ico{color:var(--mint);font-weight:900}
+    .form-shell{margin-top:25px;padding:18px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(145deg,rgba(23,46,58,.84),rgba(10,23,34,.94));box-shadow:0 21px 53px rgba(0,0,0,.19)}
+    .step-row{display:flex;align-items:center;gap:7px;margin-bottom:22px}.step{height:4px;flex:1;border-radius:999px;background:rgba(189,237,221,.12)}.step.active{background:linear-gradient(90deg,var(--mint),var(--cyan))}
+    .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field{display:grid;gap:7px;margin-bottom:14px}.field.wide{grid-column:1/-1}.field label{font-size:10px;font-weight:900;color:#dff4eb;letter-spacing:.105em;text-transform:uppercase}.field label span{color:var(--soft);font-weight:700;letter-spacing:0;text-transform:none}
+    .field input,.field textarea,.field select{width:100%;border:1px solid rgba(197,241,226,.14);border-radius:15px;padding:13px 14px;color:var(--ink);background:rgba(4,14,21,.46);font-size:14px;outline:none;transition:.18s}.field textarea{resize:vertical;min-height:112px;line-height:1.48}.field select{appearance:auto}.field input::placeholder,.field textarea::placeholder{color:#66808b}.field input:focus,.field textarea:focus,.field select:focus{border-color:rgba(131,239,190,.5);background:rgba(4,16,22,.68)}
+    .choice-wrap{display:flex;flex-wrap:wrap;gap:8px}.choice{position:relative}.choice input{position:absolute;opacity:0;pointer-events:none}.choice span{display:inline-flex;align-items:center;padding:10px 11px;border:1px solid var(--line);border-radius:13px;color:#cce2da;background:rgba(12,28,38,.68);font-size:11px;font-weight:760}.choice input:checked+span{border-color:rgba(131,239,190,.53);background:rgba(73,197,145,.14);color:#e8fff4}
+    .consent{display:flex;align-items:flex-start;gap:10px;margin:5px 0 16px;padding:13px;border-radius:16px;border:1px solid rgba(192,240,222,.11);background:rgba(6,17,25,.43);color:var(--muted);font-size:11px;line-height:1.5}.consent input{width:17px;height:17px;margin:0;accent-color:#83efbe;flex:0 0 auto}.consent b{color:#e4f6ed}
+    .primary,.secondary{border:0;border-radius:15px;padding:14px 16px;font-size:13px;font-weight:860;transition:transform .16s ease,filter .16s ease}.primary{width:100%;color:#082117;background:linear-gradient(135deg,#c5ffe7,#72e5b4);box-shadow:0 14px 28px rgba(54,212,145,.22)}.secondary{color:#e6fbf1;border:1px solid rgba(158,243,208,.19);background:rgba(96,203,165,.13)}.primary:active,.secondary:active{transform:translateY(1px) scale(.985)}.primary[disabled]{opacity:.5;cursor:not-allowed}
+    .result{margin-top:25px;padding:20px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(145deg,rgba(21,48,58,.9),rgba(10,24,34,.98));box-shadow:0 23px 56px rgba(0,0,0,.2)}
+    .verdict{display:flex;align-items:flex-start;gap:12px}.verdict-icon{width:45px;height:45px;border-radius:16px;display:grid;place-items:center;flex:0 0 auto;font-size:22px;font-weight:900}.verdict.yes .verdict-icon{color:#092819;background:linear-gradient(135deg,#c4ffe6,#75dfb7)}.verdict.no .verdict-icon{color:#3a2410;background:linear-gradient(135deg,#ffe0a8,#ffb36f)}.tiny{margin-top:4px;color:var(--soft);font-size:10px;letter-spacing:.1em;font-weight:850}.verdict h2{font-size:25px}.verdict p{margin:7px 0 0;color:var(--muted);font-size:12px;line-height:1.55}
+    .score-row{display:flex;align-items:end;justify-content:space-between;margin:19px 0 13px;padding-top:17px;border-top:1px solid var(--line)}.score{font-size:40px;font-weight:900;letter-spacing:-.09em}.score span{font-size:12px;letter-spacing:0;color:var(--soft)}.bar{height:9px;border-radius:999px;background:rgba(210,244,232,.09);overflow:hidden}.bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--mint),var(--cyan))}
+    .reason-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:17px}.reason{padding:13px;border-radius:17px;border:1px solid var(--line);background:rgba(5,16,23,.42)}.reason b{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--mint)}.reason.no b{color:var(--amber)}.reason p{margin:7px 0 0;color:#c1d4d5;font-size:11px;line-height:1.48}
+    .result .notice{margin-top:18px}.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+    .hidden{display:none!important}.footer{margin-top:27px;color:var(--soft);font-size:10px;line-height:1.55;text-align:center}.status-connect{margin-top:10px;text-align:center;font-size:10px;color:var(--soft)}.status-connect.ok{color:var(--mint)}.status-connect.warn{color:var(--amber)}
+    @media (max-width:540px){.field-grid{grid-template-columns:1fr}.field.wide{grid-column:auto}.reason-grid{grid-template-columns:1fr}.mode{font-size:8px;padding:8px}.hero h2{font-size:28px}.topbar{padding-left:15px;padding-right:15px}.result-actions{grid-template-columns:1fr}.hero-stats{gap:15px}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="mark"><b>N</b></div><div><div class="brand-name">NIMOPRA</div><div class="brand-sub">GATE · INBOX PILOT</div></div></div>
+    <div class="mode"><i></i>PILOT</div>
+  </header>
+  <main>
+    <section id="form-view">
+      <p class="eyebrow"><span class="dot"></span>IDEEN EINREICHEN · GATE 01</p>
+      <h1>Gib deiner Idee<br><em>eine faire Prüfung.</em></h1>
+      <p class="lead">NIMOPRA GATE ordnet Ideen nach klaren Leitlinien ein. Du erhältst eine begründete Vorprüfung – und NIMOPRA entscheidet anschließend, ob eine persönliche Weiterprüfung sinnvoll ist.</p>
+
+      <div class="hero">
+        <div class="hero-head"><span class="pill"><i></i>NIM · STRUKTURIERTE VORPRÜFUNG</span><div class="nim">N</div></div>
+        <h2>Kein leeres <b>„Klingt gut“.</b><br>Eine klare Richtung.</h2>
+        <p>Wir prüfen Problem, Zielgruppe, Nutzen, Testbarkeit und den ersten machbaren Schritt. Eine Zusage, Finanzierung oder Beteiligung entsteht dadurch nicht.</p>
+        <div class="hero-stats">
+          <div class="hero-stat"><b>07</b><span>LEITLINIEN</span></div>
+          <div class="hero-stat"><b>01</b><span>FAIRER START</span></div>
+          <div class="hero-stat"><b>0 €</b><span>PILOT-PHASE</span></div>
+        </div>
+      </div>
+
+      <div class="notice"><div class="ico">⌁</div><div><b>Bitte keine geheimen Baupläne, Passwörter, Patentdetails oder sensiblen Daten einreichen.</b><br>Beschreibe das Problem und deine Richtung so, dass eine erste Prüfung möglich ist.</div></div>
+
+      <form id="gate-form" class="form-shell">
+        <div class="step-row"><i class="step active"></i><i class="step active"></i><i class="step active"></i></div>
+        <div class="field-grid">
+          <div class="field"><label for="name">Dein Name</label><input id="name" name="name" required maxlength="90" placeholder="Vor- und Nachname"></div>
+          <div class="field"><label for="email">E-Mail für Antworten</label><input id="email" name="email" required type="email" maxlength="180" placeholder="name@email.de"></div>
+          <div class="field wide"><label for="project">Projektname <span>(falls vorhanden)</span></label><input id="project" name="project" maxlength="120" placeholder="Zum Beispiel: eine kurze Bezeichnung für deine Idee"></div>
+          <div class="field wide"><label for="idea">Deine Idee</label><textarea id="idea" name="idea" required minlength="40" maxlength="4000" placeholder="Was willst du verändern? Beschreibe deine Idee in deinen Worten."></textarea></div>
+          <div class="field wide"><label for="problem">Welches konkrete Problem löst sie?</label><textarea id="problem" name="problem" required minlength="18" maxlength="2000" placeholder="Was ist für Menschen heute schwierig, teuer, langsam, unsicher oder unnötig kompliziert?"></textarea></div>
+          <div class="field"><label for="audience">Für wen genau?</label><input id="audience" name="audience" required maxlength="250" placeholder="Wer hat dieses Problem zuerst?"></div>
+          <div class="field"><label for="stage">Wo stehst du gerade?</label><select id="stage" name="stage"><option value="gedanke">Erste Idee</option><option value="konzept">Konzept vorhanden</option><option value="test">Erster Test / Feedback</option><option value="prototype">Prototyp vorhanden</option><option value="kunden">Erste Nutzer / Kunden</option></select></div>
+          <div class="field wide"><label for="solution">Wie könnte deine Lösung funktionieren?</label><textarea id="solution" name="solution" required minlength="18" maxlength="2000" placeholder="Keine Bauanleitung nötig. Beschreibe nur die grundlegende Richtung."></textarea></div>
+          <div class="field wide"><label for="difference">Was ist daran anders oder besser?</label><textarea id="difference" name="difference" maxlength="1500" placeholder="Warum ist deine Lösung nicht einfach dasselbe wie etwas, das es bereits gibt?"></textarea></div>
+          <div class="field wide"><label for="founder">Warum bist gerade du die richtige Person dafür?</label><textarea id="founder" name="founder" maxlength="1500" placeholder="Erfahrung, Zugang, Motivation oder was du bereits ausprobiert hast."></textarea></div>
+          <div class="field wide">
+            <label>Wobei könnte NIMOPRA später helfen? <span>(optional)</span></label>
+            <div class="choice-wrap">
+              <label class="choice"><input type="checkbox" name="support" value="Idee schärfen"><span>Idee schärfen</span></label>
+              <label class="choice"><input type="checkbox" name="support" value="Markt & Konkurrenz"><span>Markt & Konkurrenz</span></label>
+              <label class="choice"><input type="checkbox" name="support" value="Marke & Positionierung"><span>Marke & Positionierung</span></label>
+              <label class="choice"><input type="checkbox" name="support" value="Website / Landingpage"><span>Website / Landingpage</span></label>
+              <label class="choice"><input type="checkbox" name="support" value="App / Prototyp"><span>App / Prototyp</span></label>
+              <label class="choice"><input type="checkbox" name="support" value="Pitch / Konzept"><span>Pitch / Konzept</span></label>
+            </div>
+          </div>
+        </div>
+        <label class="consent"><input id="consent" name="consent" type="checkbox" required><span><b>Ich bestätige:</b> Ich darf diese Informationen einreichen. Ich verstehe, dass NIMOPRA GATE im Pilot eine unverbindliche Vorprüfung liefert und keine Rechts-, Steuer-, Patent-, Finanzierungs- oder Erfolgszusage ist. Ich stimme der Speicherung dieser Einreichung zur Bearbeitung und Rückmeldung zu.</span></label>
+        <button class="primary" id="submit-btn" type="submit">Idee prüfen lassen →</button>
+        <div id="connection-status" class="status-connect"></div>
+      </form>
+      <p class="footer">NIMOPRA GATE · Pilotversion · Eine starke Idee wird nicht durch Versprechen groß, sondern durch einen klaren nächsten Beweis.</p>
+    </section>
+
+    <section id="result-view" class="hidden">
+      <p class="eyebrow"><span class="dot"></span>GATE 01 · VORPRÜFUNG</p>
+      <h1>Deine erste<br><em>Einordnung.</em></h1>
+      <p class="lead">NIM hat deine Angaben nach den NIMOPRA-Leitlinien strukturiert. Die endgültige Weiterprüfung bleibt eine menschliche NIMOPRA-Entscheidung.</p>
+      <div id="result-card" class="result"></div>
+    </section>
+  </main>
+</div>
+<iframe name="nimopra-sink" id="nimopra-sink" style="display:none" title="Übermittlung"></iframe>
+<script>
+(function(){
+  const formView = document.getElementById('form-view');
+  const resultView = document.getElementById('result-view');
+  const form = document.getElementById('gate-form');
+  const statusEl = document.getElementById('connection-status');
+  const submitBtn = document.getElementById('submit-btn');
+  const params = new URLSearchParams(location.search);
+  const endpoint = (params.get('api') || '').trim();
+
+  function wordCount(v){ return String(v || '').trim().split(/\s+/).filter(Boolean).length; }
+  function escapeHtml(v){ return String(v || '').replace(/[&<>"']/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'})[c]; }); }
+  function makeAssessment(data){
+    const hasProblem = wordCount(data.problem) >= 7;
+    const hasAudience = wordCount(data.audience) >= 2;
+    const hasSolution = wordCount(data.solution) >= 7;
+    const hasIdea = wordCount(data.idea) >= 18;
+    const hasDifference = wordCount(data.difference) >= 5;
+    const hasFounder = wordCount(data.founder) >= 5;
+    const stagePoints = {gedanke:2,konzept:5,test:8,prototype:10,kunden:12}[data.stage] || 2;
+    const problem = Math.min(20, hasProblem ? 13 + Math.min(7,Math.floor(wordCount(data.problem)/11)) : 4);
+    const audience = Math.min(15, hasAudience ? 10 + Math.min(5,Math.floor(wordCount(data.audience)/6)) : 4);
+    const value = Math.min(15, (hasSolution ? 9 : 4) + (hasIdea ? 3 : 0) + (wordCount(data.idea)>55 ? 3 : 0));
+    const testability = Math.min(15, stagePoints + (data.stage !== 'gedanke' ? 2 : 0));
+    const difference = Math.min(15, hasDifference ? 10 + Math.min(4,Math.floor(wordCount(data.difference)/9)) : 4);
+    const feasibility = Math.min(10, (hasIdea ? 5 : 2) + (data.stage !== 'gedanke' ? 3 : 1) + (hasSolution ? 2 : 0));
+    const founder = Math.min(10, hasFounder ? 7 + Math.min(3,Math.floor(wordCount(data.founder)/10)) : 3);
+    const score = problem+audience+value+testability+difference+feasibility+founder;
+    const yes = score >= 60 && hasProblem && hasAudience && hasSolution;
+    const reasons = [];
+    const open = [];
+    if(hasProblem) reasons.push('ein konkretes Problem erkennbar ist'); else open.push('das Problem noch zu allgemein formuliert ist');
+    if(hasAudience) reasons.push('eine erste Zielgruppe benannt ist'); else open.push('noch offen bleibt, wer das Problem zuerst wirklich hat');
+    if(hasSolution) reasons.push('eine nachvollziehbare Lösungsrichtung sichtbar wird'); else open.push('die Lösungsrichtung noch zu vage bleibt');
+    if(data.stage !== 'gedanke') reasons.push('bereits ein erster Schritt oder Testansatz erkennbar ist'); else open.push('noch kein kleiner Beweis- oder Testweg beschrieben ist');
+    if(hasDifference) reasons.push('ein möglicher Unterschied zu Bestehendem benannt ist'); else open.push('der Unterschied zu bestehenden Lösungen noch fehlt');
+    if(!hasFounder) open.push('dein persönlicher Zugang oder Einsatz noch nicht greifbar ist');
+    return {
+      score:score,
+      yes:yes,
+      verdict: yes ? 'JA — weiter prüfen' : 'NEIN — im aktuellen Stand',
+      summary: yes ? 'Die Idee überquert die erste Gate-Schwelle. Sie ist noch kein fertiges Geschäft, aber sie verdient eine strukturierte menschliche Weiterprüfung.' : 'Die Idee überquert Gate 01 im aktuellen Stand noch nicht. Das ist kein endgültiges Nein zu dir oder deiner Richtung – nur ein ehrlicher Hinweis, was noch fehlt.',
+      reasons:reasons.slice(0,3),
+      open:open.slice(0,4)
+    };
+  }
+  function renderResult(assessment, remote){
+    const c = assessment.yes ? 'yes' : 'no';
+    const label = assessment.yes ? '✓' : '!';
+    const reasonText = assessment.reasons.length ? assessment.reasons.map(escapeHtml).join('<br>• ') : '• Für ein positives Signal fehlen noch konkrete Belege.';
+    const openText = assessment.open.length ? assessment.open.map(escapeHtml).join('<br>• ') : '• NIMOPRA prüft als Nächstes den besten ersten Beweis.';
+    const project = document.getElementById('project').value.trim() || 'Deine Idee';
+    document.getElementById('result-card').innerHTML =
+      '<div class="verdict '+c+'">'+
+        '<div class="verdict-icon">'+label+'</div><div><div class="tiny">NIM · STRUKTURIERTE VORPRÜFUNG</div><h2>'+assessment.verdict+'</h2><p>'+escapeHtml(assessment.summary)+'</p></div>'+
+      '</div>'+
+      '<div class="score-row"><div><div class="tiny">GATE-SCORE</div><div class="score">'+assessment.score+' <span>/ 100</span></div></div><div class="tiny">'+escapeHtml(project).slice(0,36)+'</div></div>'+
+      '<div class="bar"><i style="width:'+assessment.score+'%"></i></div>'+
+      '<div class="reason-grid">'+
+        '<div class="reason"><b>Ja, weil …</b><p>• '+reasonText+'</p></div>'+
+        '<div class="reason no"><b>Noch offen …</b><p>• '+openText+'</p></div>'+
+      '</div>'+
+      '<div class="notice"><div class="ico">↗</div><div><b>'+ (remote ? 'Die Einreichung wurde an das NIMOPRA Pilot-Postfach übermittelt.' : 'Die Verbindung zum NIMOPRA Pilot-Postfach ist noch nicht gesetzt.') +'</b><br>'+ (remote ? 'NIMOPRA kann dir nach menschlicher Prüfung per E-Mail antworten. Bitte speichere diese Seite nicht als verbindliche Zusage.' : 'Diese Vorprüfung ist lokal sichtbar. Sobald der Pilot-Link verbunden ist, wird sie zentral in der NIMOPRA Inbox gespeichert.') +'</div></div>'+
+      '<div class="result-actions"><button class="secondary" type="button" id="start-over">Neue Idee einreichen</button><button class="primary" type="button" id="copy-result">Vorprüfung kopieren</button></div>';
+    document.getElementById('start-over').addEventListener('click', function(){ resultView.classList.add('hidden'); formView.classList.remove('hidden'); window.scrollTo({top:0,behavior:'smooth'}); });
+    document.getElementById('copy-result').addEventListener('click', function(){
+      const txt = 'NIMOPRA GATE · '+assessment.verdict+' · Score '+assessment.score+'/100\\n\\nJa, weil:\\n- '+assessment.reasons.join('\\n- ')+'\\n\\nNoch offen:\\n- '+assessment.open.join('\\n- ');
+      navigator.clipboard && navigator.clipboard.writeText(txt).then(function(){
+        document.getElementById('copy-result').textContent='Kopiert ✓';
+      }).catch(function(){});
+    });
+  }
+  function submitToInbox(payload){
+    if(!endpoint) return false;
+    const relay = document.createElement('form');
+    relay.method='POST';
+    relay.action=endpoint;
+    relay.target='nimopra-sink';
+    relay.style.display='none';
+    Object.keys(payload).forEach(function(key){
+      const input=document.createElement('input');
+      input.type='hidden'; input.name=key; input.value=String(payload[key] == null ? '' : payload[key]);
+      relay.appendChild(input);
+    });
+    document.body.appendChild(relay);
+    relay.submit();
+    setTimeout(function(){ relay.remove(); },1600);
+    return true;
+  }
+  if(endpoint){
+    statusEl.textContent='● Pilot-Postfach verbunden';
+    statusEl.classList.add('ok');
+  }else{
+    statusEl.textContent='● Pilot-Postfach wird noch verbunden';
+    statusEl.classList.add('warn');
+  }
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    const fd = new FormData(form);
+    const data = {
+      name:fd.get('name') || '',email:fd.get('email') || '',project:fd.get('project') || '',
+      idea:fd.get('idea') || '',problem:fd.get('problem') || '',audience:fd.get('audience') || '',
+      stage:fd.get('stage') || 'gedanke',solution:fd.get('solution') || '',difference:fd.get('difference') || '',
+      founder:fd.get('founder') || '',support:fd.getAll('support').join(', '),consent:fd.get('consent') ? 'ja' : 'nein'
+    };
+    const assessment = makeAssessment(data);
+    submitBtn.disabled=true;submitBtn.textContent='Vorprüfung wird erstellt …';
+    const remote = submitToInbox(Object.assign({},data,{
+      action:'submit',
+      source:'NIMOPRA_GATE_INBOX_PILOT',
+      url:location.href,
+      nimScore:assessment.score,
+      nimVerdict:assessment.verdict,
+      nimReasons:assessment.reasons.join(' | '),
+      nimOpen:assessment.open.join(' | ')
+    }));
+    setTimeout(function(){
+      submitBtn.disabled=false;submitBtn.textContent='Idee prüfen lassen →';
+      formView.classList.add('hidden');resultView.classList.remove('hidden');renderResult(assessment,remote);
+      window.scrollTo({top:0,behavior:'smooth'});
+    },560);
+  });
+})();
+</script>
+</body>
+</html>
